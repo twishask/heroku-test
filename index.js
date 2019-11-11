@@ -18,6 +18,13 @@ app.get('/trial', function (req, res) {
   console.log("Express working");
     res.send("Express working on heroku")
 })
+app.post('/order-creation', function (req, res) {
+  console.log(req);
+  console.log(res);
+  console.log(req.body);
+  res.status(200);
+  res.send(req.body);
+})
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
