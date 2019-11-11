@@ -14,6 +14,8 @@ function App() {
   return (
     <div className="App">
       Hello React lovers
+      <br></br>
+      Heroku+git test
       <button
               className="more"
               onClick={getPasswords}>
