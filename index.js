@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.get('/trial', function (req, res) {
   console.log("Express working");
+  res.status(200);
     res.send("Express working on heroku")
 })
 app.post('/order-creation', function (req, res) {

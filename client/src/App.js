@@ -5,11 +5,12 @@ import './App.css';
 function App() {
   const getPasswords = () => {
     console.log("getPasswords function");
-    // Get the passwords and store them in state
     fetch('/trial')
-      .then(res => res.json())
-      .then(passwords => {console.log("passwords"+passwords);});
-  }
+      .then((res) => {
+        return res.text()
+      .then(textResponse => {console.log(textResponse);});
+    }
+  )}
 
   return (
     <div className="App">
