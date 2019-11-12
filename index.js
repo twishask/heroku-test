@@ -2,11 +2,21 @@
 //var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 //var cors = require('cors');
 const path = require("path")
 const port = process.env.PORT || 2000;
 
+mongoose.connect('mongodb://localhost/trialdb');
+
+var itemSchema = new mongoose.Schema({
+  email: {type: String, required: true},
+  id: {type: Number, required: true},
+  number: {type: Number},
+  created_at: {type: String}
+});
+
+var Item = mongoose.model('Item', itemSchema);
 
 // ... other app.use middleware
 //app.use(cors());
@@ -23,8 +33,18 @@ app.post('/order-creation', function (req, res) {
   console.log(req);
   console.log(res);
   console.log(req.body);
-  res.status(200);
-  res.send("req.body here");
+  var newitem = {email: req.body.email,
+                  id: req.body.id,
+                number: req.body.number,
+              created_at: req.body.created_at}
+  Item.create(newitem, function (err, newitem) {
+    if (err) console.log(err)
+    else {
+      res.send(newitem)
+    }
+  })
+//  res.status(200);
+  //res.send("req.body here");
 })
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
