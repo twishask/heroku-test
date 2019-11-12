@@ -23,7 +23,7 @@ app.post('/order-creation', function (req, res) {
   console.log(res);
   console.log(req.body);
   res.status(200);
-  res.send(req.body);
+  res.send("req.body here");
 })
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
