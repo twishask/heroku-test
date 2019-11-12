@@ -8,7 +8,7 @@ function App() {
     // Get the passwords and store them in state
     fetch('/trial')
       .then(res => res.json())
-      .then(passwords => {console.log(passwords);});
+      .then(passwords => {console.log("passwords"+passwords);});
   }
 
   return (
