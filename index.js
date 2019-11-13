@@ -1,5 +1,5 @@
 // ... other imports
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -20,8 +20,8 @@ var Item = mongoose.model('Item', itemSchema);
 
 // ... other app.use middleware
 //app.use(cors());
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.get('/trial', function (req, res) {
