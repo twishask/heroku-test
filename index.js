@@ -24,12 +24,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.get('/trial', function (req, res) {
+app.get('/orders', function (req, res) {
   console.log("Express working");
-  res.status(200);
-    res.send("Express working on heroku")
+  Item.find({}, function (err, itemlist) {
+    if(err) console.log(err);
+    else {
+      res.send(itemlist);
+    }
+  })
+  //res.status(200);
+    //res.send("Express working on heroku")
 })
-app.post('/order-creation', function (req, res) {
+app.post('/orders/create', function (req, res) {
   console.log(req);
   console.log(res);
   console.log(req.body);
