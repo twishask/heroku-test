@@ -13,8 +13,9 @@ var itemSchema = new mongoose.Schema({
   email: {type: String, required: true},
   id: {type: Number, required: true},
   number: {type: Number},
-  created_at: {type: String}
-});
+  created_at: {type: String},
+  extradetails: {type: Object}
+}, {strict: false});
 
 var Item = mongoose.model('Item', itemSchema);
 
@@ -39,10 +40,7 @@ app.post('/orders/create', function (req, res) {
   console.log(req);
   console.log(res);
   console.log(req.body);
-  var newitem = {email: req.body.email,
-                  id: req.body.id,
-                number: req.body.number,
-              created_at: req.body.created_at}
+  var newitem = req.body
   Item.create(newitem, function (err, newitem) {
     if (err) console.log(err)
     else {
